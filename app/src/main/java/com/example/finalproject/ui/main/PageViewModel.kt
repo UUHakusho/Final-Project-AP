@@ -40,12 +40,19 @@ class PageViewModel : ViewModel() {
         }
     }
 
-    fun addToWorkoutList(exercise: Exercise) {
+    fun modifyWorkoutList(exercise: Exercise) {
         listOfWorkouts.value?.toMutableList()?.let { woList ->
-            woList.add(exercise)
+            if(woList.contains(exercise)) {
+                woList.remove(exercise)
+            } else {
+                woList.add(exercise)
+            }
             listOfWorkouts.value = woList
-            Log.d("Dbg", "New list size: " + woList.size)
         }
+    }
+
+    fun observeWorkoutList(): List<Exercise>? {
+        return listOfWorkouts.value
     }
 
     init {

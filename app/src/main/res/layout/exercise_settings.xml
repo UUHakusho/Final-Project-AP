@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:padding="10dp"
-        android:text="Estimated 1 Rep Max: "
+        android:text="View Lift Progression"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textReps">
     </Button>
@@ -145,4 +145,26 @@
         app:layout_constraintStart_toEndOf="@+id/sec_spinner"
         app:layout_constraintTop_toTopOf="@+id/textTimer">
     </TextView>
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="10dp"
+        android:text="Save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+        app:layout_constraintTop_toBottomOf="@+id/textTimer">
+    </Button>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="10dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toEndOf="@+id/btnOk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTimer">
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

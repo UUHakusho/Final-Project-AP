@@ -58,6 +58,10 @@ class ExercisesFragment : Fragment() {
             adapter.listExercises = it
             adapter.notifyDataSetChanged()
         }
+
+        pageViewModel.mediatorListOfWorkouts.observe(viewLifecycleOwner) {
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onDestroyView() {

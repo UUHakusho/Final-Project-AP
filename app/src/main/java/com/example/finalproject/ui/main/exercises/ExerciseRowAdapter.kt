@@ -30,17 +30,8 @@ class ExerciseRowAdapter(private val viewModel: PageViewModel)
         : RecyclerView.ViewHolder(rowExerciseBinding.root) {
         init {
             this.itemView.setOnClickListener {
-                //viewModel.addToWorkoutList(getItem(adapterPosition))
                 val currExercise = listExercises[adapterPosition]
-                viewModel.addToWorkoutList(currExercise)
-                Log.d("Dbg", "Attempted add to wo list")
-                /*isSelected = !isSelected
-                if (isSelected) {
-                    this.itemView.setBackgroundColor(Color.GREEN)
-                }
-                else {
-                    this.itemView.setBackgroundColor(Color.WHITE)
-                }*/
+                viewModel.modifyWorkoutList(currExercise)
             }
         }
     }
@@ -54,6 +45,11 @@ class ExerciseRowAdapter(private val viewModel: PageViewModel)
         val sub = listExercises[holder.adapterPosition]
         holder.rowExerciseBinding.subRowHeading.text = sub.title
         holder.rowExerciseBinding.subRowDetails.text = sub.description
+        if(viewModel.observeWorkoutList()!!.contains(sub)) {
+            holder.itemView.setBackgroundColor(Color.GREEN)
+        } else {
+            holder.itemView.setBackgroundColor(Color.WHITE)
+        }
     }
 
     override fun getItemCount(): Int {
