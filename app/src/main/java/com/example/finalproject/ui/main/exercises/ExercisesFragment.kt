@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -31,7 +32,7 @@ class ExercisesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java).apply {
+        pageViewModel = ViewModelProvider(requireActivity())[PageViewModel::class.java].apply {
             setIndex(arguments?.getInt(ExercisesFragment.ARG_SECTION_NUMBER) ?: 1)
         }
     }
@@ -62,6 +63,8 @@ class ExercisesFragment : Fragment() {
         pageViewModel.mediatorListOfWorkouts.observe(viewLifecycleOwner) {
             adapter.notifyDataSetChanged()
         }
+
+        binding.btnSaveWrkt.isVisible = false
     }
 
     override fun onDestroyView() {

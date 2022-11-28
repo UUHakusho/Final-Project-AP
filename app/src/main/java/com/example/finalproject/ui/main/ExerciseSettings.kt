@@ -18,12 +18,16 @@ class ExerciseSettings : AppCompatActivity() {
     private var numReps = 0
     private var numWeight = 0
     private var title = ""
+    private var numMins = 0
+    private var numSec = 0
 
     companion object {
         const val titleKey = "title"
         const val setsKey = "sets"
         const val repsKey = "reps"
         const val weightKey = "weight"
+        const val minsKey = "restMins"
+        const val secKey = "restSec"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +36,12 @@ class ExerciseSettings : AppCompatActivity() {
         setContentView(binding.root)
 
         // Fetch data from the calling fragment
-        title = intent.extras?.getString("title").toString()
-        numSets = intent.extras?.getInt("sets")!!
-        numReps = intent.extras?.getInt("reps")!!
-        numWeight = intent.extras?.getInt("weight")!!
+        title = intent.extras?.getString(titleKey).toString()
+        numSets = intent.extras?.getInt(setsKey)!!
+        numReps = intent.extras?.getInt(repsKey)!!
+        numWeight = intent.extras?.getInt(weightKey)!!
+        numMins = intent.extras?.getInt(minsKey)!!
+        numSec = intent.extras?.getInt(secKey)!!
 
         binding.InputWeight.setText(numWeight.toString())
 
@@ -51,12 +57,35 @@ class ExerciseSettings : AppCompatActivity() {
 
         val repAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, arrayOf(1,2,3,4,5,6,7,8,9))
         binding.repSpinner.adapter = repAdapter
-        binding.repSpinner.setSelection(numReps!! - 1)
-        binding.repSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.repSpinner.setSelection(numReps - 1)
+        binding.repSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Log.d("Dbg", "Position selected: $position")
                 numReps = position + 1
+            }
+        }
+
+        val minsArray = arrayOf(0,1,2,3,4,5,6,7,8,9)
+        val restMinAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, minsArray)
+        binding.minsSpinner.adapter = restMinAdapter
+        Log.d("Dbg", "Num minutes: $numMins")
+        binding.minsSpinner.setSelection(minsArray.indexOf(numMins))
+        binding.minsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                numMins = minsArray[position]
+            }
+        }
+
+        val secArray = arrayOf(0,15,30,45)
+        val restSecAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, secArray)
+        binding.secSpinner.adapter = restSecAdapter
+        binding.secSpinner.setSelection(secArray.indexOf(numSec))
+        binding.secSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                numSec = secArray[position]
             }
         }
 
@@ -76,6 +105,8 @@ class ExerciseSettings : AppCompatActivity() {
         intent.putExtra(setsKey, numSets)
         intent.putExtra(repsKey, numReps)
         intent.putExtra(weightKey, numWeight)
+        intent.putExtra(minsKey, numMins)
+        intent.putExtra(secKey, numSec)
         setResult(RESULT_OK, intent)
         finish()
     }
