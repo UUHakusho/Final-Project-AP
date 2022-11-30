@@ -30,6 +30,9 @@
         <activity android:name=".ui.main.ExerciseSettings"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity android:name=".ui.main.PlotViewActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

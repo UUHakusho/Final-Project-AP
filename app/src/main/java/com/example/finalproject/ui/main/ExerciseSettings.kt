@@ -43,6 +43,8 @@ class ExerciseSettings : AppCompatActivity() {
         numMins = intent.extras?.getInt(minsKey)!!
         numSec = intent.extras?.getInt(secKey)!!
 
+        supportActionBar?.title = "$title Settings"
+
         binding.InputWeight.setText(numWeight.toString())
 
         val setAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, arrayOf(1,2,3,4,5))

@@ -66,6 +66,7 @@ class WorkoutFragment: Fragment() {
                 }
             }
         }
+        const val keyKey = "key"
         const val titleKey = "title"
         const val setsKey = "sets"
         const val repsKey = "reps"
@@ -165,7 +166,12 @@ class WorkoutFragment: Fragment() {
                         return true
                     }
                     R.id.progress -> {
-                        //TODO: Launch a popup with the plot of this exercise progress
+                        val intent = Intent(context, PlotViewActivity::class.java)
+                        intent.apply {
+                            putExtra(keyKey, adapter.currentList[position].key)
+                            putExtra(titleKey, adapter.currentList[position].title)
+                        }
+                        context?.startActivity(intent)
                         return true
                     }
                 }

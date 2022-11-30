@@ -34,5 +34,5 @@ data class Exercise(
 
 data class WorkoutHistory(
     var timestamp: LocalDateTime,
-    var listExercises: List<Exercise>
+    var listExercises: List<Pair<String, Int>>
 )

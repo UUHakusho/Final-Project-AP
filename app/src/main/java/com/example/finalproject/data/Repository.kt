@@ -1,11 +1,11 @@
 package com.example.finalproject.data
 
+import android.util.Log
+import com.github.mikephil.charting.data.Entry
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
-// This is the model in MVVM
 data class Data(val name: String, val rating: Boolean)
-// This abstracts either stable storage (file or database)
-//   or the network
 
 class Repository {
     companion object {
@@ -18,7 +18,16 @@ class Repository {
             Exercise("barbellRow", "BarbellRow", "A posterior chain exercise"),
         )
 
-        private var workoutHistoryList: MutableList<WorkoutHistory> = mutableListOf()
+        private var workoutHistoryList: MutableList<WorkoutHistory> = mutableListOf(
+            WorkoutHistory(LocalDateTime.now().with{it.minus(10, ChronoUnit.DAYS)},
+                listOf((Pair<String, Int>("benchPress", 45)))),
+            WorkoutHistory(LocalDateTime.now().with{it.minus(8, ChronoUnit.DAYS)},
+                listOf((Pair<String, Int>("benchPress", 65)))),
+            WorkoutHistory(LocalDateTime.now().with{it.minus(5, ChronoUnit.DAYS)},
+                listOf((Pair<String, Int>("benchPress", 55)))),
+            WorkoutHistory(LocalDateTime.now().with{it.minus(2, ChronoUnit.DAYS)},
+                listOf((Pair<String, Int>("benchPress", 75))))
+        )
 
         fun fetchData(): List<Exercise> {
             //val savedExercises = Json.decodeFromString<Exercise>("")
@@ -40,7 +49,22 @@ class Repository {
         }
 
         fun addWorkoutItem(listExercise: List<Exercise>) {
-            workoutHistoryList.add(WorkoutHistory(LocalDateTime.now(), listExercise))
+            val listMaxes = listExercise.map {
+                it.key to it.numWeight
+            }
+            workoutHistoryList.add(WorkoutHistory(LocalDateTime.now(), listMaxes))
+        }
+
+        fun getWorkoutItemHistory(currExerciseKey: String): ArrayList<Entry> {
+            val entries = ArrayList<Entry>()
+            for(woHist in workoutHistoryList) {
+                for(ex in woHist.listExercises) {
+                    if(currExerciseKey == ex.first) {
+                        entries.add(Entry(woHist.timestamp.dayOfYear.toFloat(), ex.second.toFloat()))
+                    }
+                }
+            }
+            return entries
         }
     }
 }
