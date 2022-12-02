@@ -15,7 +15,7 @@ import com.example.finalproject.ui.main.exercises.ExerciseRowAdapter
 import com.google.android.material.button.MaterialButton
 
 
-class WorkoutRowAdapter(private val viewModel: PageViewModel,
+class  WorkoutRowAdapter(private val viewModel: PageViewModel,
                         private val workoutFragment: WorkoutFragment,
                         private var optionsMenuClickListener: OptionsMenuClickListener
 )
