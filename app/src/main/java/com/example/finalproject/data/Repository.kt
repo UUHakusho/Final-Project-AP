@@ -1,6 +1,5 @@
 package com.example.finalproject.data
 
-import android.util.Log
 import com.github.mikephil.charting.data.Entry
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
@@ -15,7 +14,7 @@ class Repository {
             Exercise("backSquat", "Back Squat", "A lower body exercise to target" +
                     "the posterior chain, hamstrings, quadriceps, and gluteus maximus muscles"),
             Exercise("overheadPress", "Overhead Press", "A shoulder exercise"),
-            Exercise("barbellRow", "BarbellRow", "A posterior chain exercise"),
+            Exercise("barbellRow", "Barbell Row", "A posterior chain exercise"),
         )
 
         private var workoutHistoryList: MutableList<WorkoutHistory> = mutableListOf(
@@ -30,12 +29,12 @@ class Repository {
         )
 
         fun fetchData(): List<Exercise> {
-            //val savedExercises = Json.decodeFromString<Exercise>("")
+            // val savedExercises = Json.decodeFromString<Exercise>("")
             return exercisesList
         }
 
         fun saveLatestExerciseDefaults(listExercise: List<Exercise>) {
-            //val jsonList = Json.encodeToString(listExercise)
+            // val jsonList = Json.encodeToString(listExercise)
             for(exercise in listExercise) {
                 if(exercisesList.contains(exercise)) {
                     val ex = exercisesList[exercisesList.indexOf(exercise)]

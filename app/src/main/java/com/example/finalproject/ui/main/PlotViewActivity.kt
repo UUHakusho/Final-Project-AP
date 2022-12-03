@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.R
 import com.example.finalproject.data.Repository
 import com.example.finalproject.databinding.PlotViewBinding
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet

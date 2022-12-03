@@ -1,6 +1,5 @@
 package com.example.finalproject.ui.main
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.finalproject.data.Exercise
 import com.example.finalproject.data.Repository
@@ -57,7 +56,7 @@ class PageViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            //listOfWorkouts.value = Repository.fetchData()
+            // listOfWorkouts.value = Repository.fetchData()
             listOfExercises.value = Repository.fetchData()
         }
     }

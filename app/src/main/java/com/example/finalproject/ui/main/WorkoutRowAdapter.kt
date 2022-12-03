@@ -79,15 +79,6 @@ class  WorkoutRowAdapter(private val viewModel: PageViewModel,
         val time = String.format("%02d:%02d", currExercise.numRestMin, currExercise.numRestSec)
         holder.rowPostBinding.restText.text = "Rest: $time"
 
-        /*val constraintLayout = holder.rowPostBinding.constraintLayout
-        val materialButton = MaterialButton(holder.itemView.context)
-        materialButton.layoutParams = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            )
-        materialButton.text = "5"
-        materialButton.cornerRadius = 28
-        constraintLayout.addView(materialButton)*/
         val bind = holder.rowPostBinding
         listButton = listOf(bind.setCount1, bind.setCount2, bind.setCount3, bind.setCount4, bind.setCount5)
         for(i in 0 until listButton.size) {

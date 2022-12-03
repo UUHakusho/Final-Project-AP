@@ -1,7 +1,6 @@
 package com.example.finalproject.ui.main.exercises
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.databinding.FragmentRvBinding
 import com.example.finalproject.ui.main.PageViewModel
+
 
 class ExercisesFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
